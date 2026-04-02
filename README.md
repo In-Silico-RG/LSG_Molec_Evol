@@ -132,4 +132,4 @@ LGPL-2.1 — see [LICENSE](LICENSE)
 
 IN SILICO Research Group  
 Universidad de Sucre — Sincelejo, Colombia  
-[insilicorg@gmail.com](mailto:insilicorg@gmail.com)
+[insilico@unisucre.edu.co](mailto:insilico@unisucre.edu.co)
