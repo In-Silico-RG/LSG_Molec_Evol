@@ -1,0 +1,17 @@
+bondconfig:
+  B5: 5
+  BB: 4
+  BO4: 77
+  DBDO: 0
+  _4O5: 8
+  _55: 6
+dp: 10
+json: true
+matrices: true
+monoconfig:
+  G: 0
+  H: 0
+  S: 0
+png: true
+s_g_ratio: 0.8
+sdf: true

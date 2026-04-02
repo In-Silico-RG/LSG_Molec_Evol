@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# LGS outputs (grandes, no van al repo)
+output/
+workers/
+*.sdf
+*.mol
+
+# OS
+.DS_Store
+Thumbs.db
