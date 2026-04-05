@@ -113,8 +113,7 @@ literature, not from technical (pulped) lignin:
 ```bibtex
 @article{combariza2026lignin,
   author  = {Combariza, Aldo F. and others},
-  title   = {Computational Generation Time as a Proxy for Evolutionary
-             Accessibility in Lignin: A Two-Experiment Falsification Framework},
+  title   = {Non-Monotonic Computational Complexity in Lignin Assembly Reveals a Hardwood Transition Peak Across 400 Million Years of Plant Evolution},
   journal = {ChemRxiv},
   year    = {2026},
   doi     = {TBD}
