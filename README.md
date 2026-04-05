@@ -12,8 +12,8 @@ Minciencias Category C
 This repository contains the data, configuration files, and analysis
 notebooks for the paper:
 
-> **Computational Generation Time as a Proxy for Evolutionary Accessibility
-> in Lignin: A Two-Experiment Falsification Framework**  
+> **Non-Monotonic Computational Complexity in Lignin Assembly Reveals a Hardwood Transition Peak Across
+400 Million Years of Plant Evolution**  
 > Combariza et al. — *ChemRxiv preprint, 2026*
 
 The central question: does the time required to computationally generate
