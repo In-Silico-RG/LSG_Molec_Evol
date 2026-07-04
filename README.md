@@ -27,20 +27,34 @@ that natural selection has optimized over 400 million years of plant evolution?
 ```
 ├── configs/
 │   ├── experiment1/        # 9 YAML configs — Experiment 1 (SW/HW/GR × DP5/8/10)
+│   │   └── README_experiment.md   # Experiment 1 design notes
 │   └── experiment2/        # 9 YAML configs — Experiment 2 (fBO4 × S/G orthogonal)
 ├── notebooks/
-│   ├── 03-Evolutionary_Experiment.ipynb   # Sequential runner — Experiment 1
-│   ├── 04-Decoupling_Experiment.ipynb     # Sequential runner — Experiment 2
-│   └── 05-Parallel_Experiment.ipynb       # Parallel runner (8 workers) — both
+│   ├── 03-Run_Evolutionary_Experiment.ipynb   # Sequential runner — Experiment 1
+│   └── 05-Parallel_Experiment.ipynb           # Parallel runner (8 workers) — Experiment 2
 ├── results/
 │   ├── evolutionary_experiment_results.csv   # Raw data — Experiment 1 (270 rows)
-│   └── exp2_parallel_results.csv             # Raw data — Experiment 2 (239 rows)
+│   └── exp2_parallel_results.csv             # Raw data — Experiment 2 (244 rows, 239 successful)
+├── sequential_rerun/
+│   ├── run_sequential.py                     # Uncontended sequential re-run of Experiment 2
+│   ├── exp2_sequential_results.csv           # Raw data — sequential validation (270 rows, 269 successful)
+│   └── resources/                            # 9 YAML configs used by the re-run
 ├── figures/
 │   ├── exp1_barplot.pdf/.png    # Figure 1 — Experiment 1 results
 │   └── exp2_heatmap.pdf/.png    # Figure 2 — Experiment 2 heatmap
 └── paper/
-    └── manuscript_preprint.pdf  # Full manuscript (preprint version)
+    ├── Comp_Gen_Time_Evol_Proxy.pdf      # Full manuscript
+    └── Comp_Gen_Time_Evol_Proxy_SI.pdf   # Supporting Information
 ```
+
+All notebooks/scripts run against `lgs_gen.jar`
+(Eswaran *et al.*, 2022) placed at the repository root.
+
+The `sequential_rerun/` directory validates that the non-monotonic
+hardwood peak found in Experiment 2 is not an artifact of that
+experiment's parallel execution regime — an uncontended, one-process-
+at-a-time re-run of the same 3×3 factorial grid reproduces the effect
+(see SI Section S5.3).
 
 ---
 
@@ -64,8 +78,15 @@ Strong plant type × DP interaction (η²=0.970).
 
 **Key result:** fBO4 is the dominant factor (η²=0.712) but its effect
 is **non-monotonic** — the intermediate HW level (fBO4=0.69) produces
-the longest generation times (mean 282.8s, d=2.28 vs SW), while
-SW and GR are statistically indistinguishable (p=0.528, d=0.28).
+the longest generation times (mean 282.8s, d=2.28 vs SW, pooled over
+S/G). Restricting the comparison to the natural plant-type
+configurations (SW/SW=100.8s, HW/HW=288.9s, GR/GR=152.3s), GR/GR is
+significantly slower than SW/SW (Δ=51.5s, d=1.47, t(50)=5.28,
+p=2.8×10⁻⁶): the grass configuration does not fully revert to the
+ancestral complexity level, resolving most but not all of the
+complexity introduced at the hardwood transition. The independent
+sequential re-run of the same grid (`sequential_rerun/`) confirms
+this (d=2.46, p=1.8×10⁻¹³).
 
 ---
 
@@ -84,13 +105,15 @@ pip install pyyaml pandas scipy pingouin matplotlib numpy
 
 ## Running the Experiments
 
-1. Place `lgs_gen.jar` in your working directory
-2. Open `notebooks/05-Parallel_Experiment.ipynb`
-3. Set `BASE_PATH` to your working directory
-4. Set `EXPERIMENT_MODE = 'EXP1'` or `'EXP2'`
-5. Run all cells in order
+1. Place `lgs_gen.jar` in your working directory.
+2. Experiment 1: open `notebooks/03-Run_Evolutionary_Experiment.ipynb`,
+   set `BASE_PATH` to your working directory, and run all cells in order.
+3. Experiment 2 (parallel): open `notebooks/05-Parallel_Experiment.ipynb`,
+   set `BASE_PATH`, set `EXPERIMENT_MODE = 'EXP2'`, and run all cells in order.
+4. Experiment 2 (sequential validation): run `sequential_rerun/run_sequential.py`
+   directly against the configs in `sequential_rerun/resources/`.
 
-The notebook generates the YAML configs automatically — no external
+The notebooks generate the YAML configs automatically — no external
 files needed beyond `lgs_gen.jar`.
 
 ---
