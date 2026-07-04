@@ -8,6 +8,11 @@ output/
 workers/
 *.sdf
 *.mol
+*.jar
+/resources/
+sequential_rerun/*.log
+sequential_rerun/exp2_sequential_partial_*.csv
+sequential_rerun/exp2_sequential_pilot_*.csv
 
 # OS
 .DS_Store
